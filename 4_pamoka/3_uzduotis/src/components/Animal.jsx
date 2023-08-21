@@ -4,7 +4,8 @@ const Animals = ({animals}) => {
      return(
           <div>
                <ul>
-               {animals.map(animal => <li> {animal.id} {animal.name} {animal.type} </li> )}
+               {animals.map(animal => <li key={animal.id}>
+                     {animal.id} {animal.name} {animal.type} </li> )}
                </ul>
           </div>
      )
