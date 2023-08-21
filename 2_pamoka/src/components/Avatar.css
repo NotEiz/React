@@ -1,0 +1,8 @@
+.avatar{
+     color: white;
+     background-color: blue;
+     width: 50px;
+     line-height : 50px;
+     border-radius: 50%;
+     text-align: center;
+}

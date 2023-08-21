@@ -1,0 +1,25 @@
+html{
+  font-family: 'Manrope', sans-serif;
+}
+
+body{
+  margin: 0;
+}
+
+#root{
+  text-align: center;
+}
+
+main{
+  background-color: rgb(207, 204, 204);
+  display: flex;
+}
+
+.cardWrapper{
+  margin: 20px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  width: 80%;
+}

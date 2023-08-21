@@ -1,0 +1,15 @@
+#info{
+     text-align: start;
+     margin: 2.5rem;
+     display: flex;
+     flex-direction: column;
+     width: 40%;
+}
+
+#info h1, #info p {
+     margin-bottom: 0.3rem;
+}
+
+#info img{
+     width: 80%;
+}

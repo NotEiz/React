@@ -1,0 +1,15 @@
+.price{
+     display: flex;
+}
+
+.product h4{
+     color: gray;
+}
+
+.product{
+     width: 300px;
+}
+
+.product h2{
+ margin: 0.4rem 0 0.4rem 0;
+}
