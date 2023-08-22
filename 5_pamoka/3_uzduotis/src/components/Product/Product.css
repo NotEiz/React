@@ -1,0 +1,44 @@
+#productWrapper{
+     width: 100vw;
+     display: flex;
+}
+
+#productWrapper img {
+     width:100%;
+     height: 100%;
+     object-fit: cover;
+}
+
+.hero {
+     width: 55%;
+}
+
+.main{
+     padding: 0 30px;
+}
+
+.allBtns{
+     display: flex;
+}
+
+.allBtns button {
+     padding: 0 10px;
+}
+
+#addToCartBtn {
+     margin-left: 10px ;
+     background-color: rgb(0, 145, 255);
+     color: white;
+     font-weight: 500;
+     padding: 5px 20px;
+     border-radius: 5px;
+     border: none;
+     height: 100%;
+}
+
+.allBtns p {
+     margin: 0;
+     padding: 3px 8px;
+     border: solid black 1px;
+     align-self: center;
+}
