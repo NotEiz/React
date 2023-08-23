@@ -14,9 +14,7 @@ const App = () => {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((resp) => resp.json())
-      .then((response) => {
-        setData(response);
-      });
+      .then((response) => setData(response));
   }, []);
 
   return (
