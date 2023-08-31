@@ -1,0 +1,26 @@
+.navigation {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border-bottom: 1px solid lightgray;
+    background-color: gray;
+  }
+
+  &-logo {
+    margin: 0;
+    border: 5px solid orange;
+    border-radius: 0 10px 0 10px;
+    padding: 0.5rem;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &-item {
+    margin-left: 1rem;
+    color: white;
+  }
+}

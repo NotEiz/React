@@ -1,0 +1,42 @@
+.formContainer{
+     width: 100vw;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-image: url('https://wallpaper.dog/large/17107435.jpg');
+}
+
+.formInner{
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     border-radius: 8px;
+     padding: 1.5rem;
+     width: 350px;
+     display: flex;
+     flex-direction: column;
+     
+     input{
+          background-color: lightgray;
+     }
+
+     label{
+          color: lightGray;
+     }
+}
+
+.formButton{
+     align-self: center ;
+     border: none;
+     border-radius: 5px;
+     margin-top: 1rem;
+     width: 100px;
+     line-height: 30px;
+     font-size: 1.25rem;
+     font-weight: 400;
+     transition: background-color 100ms ease-in-out;
+
+     &:hover{
+          background-color: gray;
+          color: white;
+     }
+}

@@ -1,0 +1,36 @@
+.formHeading{
+  text-align: center;
+  padding: 5px;
+}
+
+.formHeading h2{
+  margin: 0;
+}
+
+form, .formHeading,.todosWrapper{
+  box-shadow: 0.1px 0.1px 5px gray;
+}
+
+form{
+  width: 300px;
+}
+
+.inputWrapper{
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.inputWrapper input{
+  padding: 5px 10px; 
+}
+
+.todosWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 20px;
+}
+
+
