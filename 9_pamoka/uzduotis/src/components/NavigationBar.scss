@@ -1,26 +1,48 @@
 .navigation {
-  &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem;
-    border-bottom: 1px solid lightgray;
-    background-color: gray;
-  }
-
   &-logo {
     margin: 0;
-    border: 5px solid orange;
-    border-radius: 0 10px 0 10px;
-    padding: 0.5rem;
-
-    &:hover{
-      cursor: pointer;
-    }
+    border-radius: 15px;
+    width: 60px;
   }
 
   &-item {
+    font-size: 1.2rem;
     margin-left: 1rem;
     color: white;
+    transition: all 200ms ease-in-out;
+
+    &:hover{
+      color: gray;
+    }
+
+  }
+
+  &-item-wrap{
+    margin-right: 3rem;
   }
 }
+.logoWrapper{
+  margin-left: 3rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  .logoText{
+    font-size: 0.8rem;
+  }
+
+  h1{
+    color: orange;
+  }
+
+  h2{
+    color: lightgray;
+  }
+}
+
+

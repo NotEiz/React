@@ -6,6 +6,8 @@ const Event = () => {
   const events = JSON.parse(localStorage.getItem("event")) || [];
   const foundEvent = events.find((event) => event.id === +id);
 
+
+
   if (!foundEvent) {
     return <div>Event not found</div>;
   }

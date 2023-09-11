@@ -8,6 +8,7 @@ const App = () => {
   return (
     <>
       <NavigationBar />
+      <div id="backgroundImage">
       <main className="main-container">
         <Routes>
           {routes.map(({ path, Component }) => (
@@ -15,6 +16,7 @@ const App = () => {
           ))}
         </Routes>
       </main>
+      </div>
       <Footer />
     </>
   );
