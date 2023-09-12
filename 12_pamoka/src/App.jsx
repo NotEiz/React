@@ -1,22 +1,13 @@
-import { useEffect, useCallback, useState } from "react";
 import Form from "./assets/components/Form";
+import "./App.scss";
+import FeedbackForm from "./assets/components/feedbackForm";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {});
-
-  const callbackFunction = useCallback(() => {
-    setCount(count + 1);
-  }, [count]);
-
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={callbackFunction}>click</button>
-
+      <Form />
       <div>
-        <Form />
+        <FeedbackForm />
       </div>
     </div>
   );
