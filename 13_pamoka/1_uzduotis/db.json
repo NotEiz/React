@@ -1,0 +1,118 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Bonis",
+      "veisle": "misrunas",
+      "metai": 6
+    },
+    {
+      "id": 2,
+      "name": "Grybas",
+      "veisle": "vilksunis",
+      "metai": 6
+    },
+    {
+      "id": 3,
+      "name": "Keksas",
+      "veisle": "kazkoks",
+      "metai": 6
+    },
+    {
+      "id": 4,
+      "name": "Dzonis",
+      "veisle": "misrunas",
+      "metai": 6
+    },
+    {
+      "id": 1694633006853,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633010603,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633010983,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633011274,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633011538,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633011779,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633021066,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 6
+    },
+    {
+      "id": 1694633041681,
+      "name": "Judita",
+      "veisle": "Misrunas",
+      "metai": 26
+    },
+    {
+      "id": 1694633172474,
+      "name": "Bonis",
+      "veisle": "kakzas",
+      "metai": 5
+    },
+    {
+      "id": 1694633174020,
+      "name": "Bonis",
+      "veisle": "kakzas",
+      "metai": 5
+    },
+    {
+      "id": 1694633174954,
+      "name": "Bonis",
+      "veisle": "kakzas",
+      "metai": 5
+    },
+    {
+      "id": 1694633340870,
+      "name": "Bonis",
+      "veisle": "Misrunas",
+      "metai": 5
+    },
+    {
+      "id": 1694633347028,
+      "name": "sdfa",
+      "veisle": "asdf",
+      "metai": 2
+    },
+    {
+      "id": 1694633348567,
+      "name": "sdfa",
+      "veisle": "asdf",
+      "metai": 2
+    },
+    {
+      "id": 1694633390169,
+      "name": "sdfa",
+      "veisle": "asdf",
+      "metai": 2
+    }
+  ]
+}

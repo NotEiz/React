@@ -1,0 +1,44 @@
+form{
+     width: 300px;
+     display: flex;
+     gap:  15px;
+     flex-direction: column;
+     margin: 0  auto;
+     justify-content: space-between;
+     background-color: gray;
+     padding: 1rem;
+     border-radius: 10px;
+     box-sizing: border-box;
+     
+
+     input{
+          padding: 8px;
+     }
+
+     button{
+          width: 100px;
+          padding: 0.4rem;
+          border: none;
+          border-radius: 5px;
+          align-self: center;
+          
+     }
+}
+
+.animalsWrapper{
+     width: 90vw;
+     margin: 0 auto;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2rem;
+     box-sizing: border-box;
+     padding: 1rem;
+}
+
+.animalsWrapper div  {
+     border-radius: 50%;
+     width: 130px;
+     text-align: center;
+     padding: 0.5rem  1rem;
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
