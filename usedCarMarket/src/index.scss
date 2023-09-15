@@ -1,0 +1,37 @@
+html,body{
+font-family: 'Roboto', sans-serif;
+margin: 0;
+}
+
+
+label {
+  font-size: 0.9rem;
+  font-family: "Manrope", sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  transition: all 200ms ease-in-out;
+  
+  &:hover{
+    opacity: 0.6;
+    transform: scale(1.05);
+    transform: translate(-2px);
+  }
+}
+
+.underlineHeader{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.loginBackground{
+  padding: 10rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://poonawallafincorp.com/pfca/assets/blog_banner/1647692812.jpeg");
+}
