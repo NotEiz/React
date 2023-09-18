@@ -15,6 +15,6 @@ export const LoginUser = async (LoggingUser) => {
   const response = await FetchUser(LoggingUser);
   const userExists = (user) => 
     user.email === LoggingUser.email && user.password === LoggingUser.password;
-    console.log(response.some(userExists))
+    // console.log(response.some(userExists))
     return response.some(userExists);
 }

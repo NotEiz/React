@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Formik, Field } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -9,6 +9,7 @@ import { StyledInput } from "../components/styled/StyledInput";
 import { HOME_PATH, REGISTER_PATH } from "../routes/routeConsts";
 import { StyledError, StyledLabelWrapper } from "./Register";
 import { LoginUser } from "../API/User";
+import { UserContext } from "../contexts/userContext";
 
 const RegisterWrapper = styled.div`
   margin-top: 0.7;
@@ -32,13 +33,20 @@ const Error = styled.p`
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  const { setUser } = useContext(UserContext);
+
+  const { isLoggedIn } = useContext(UserContext);
+  console.log(isLoggedIn);
   const handleSubmit = async (values) => {
     try {
       const response = await LoginUser(values);
+      {
+        response && setUser(values);
+      }
+      navigate(HOME_PATH);
 
-      setError(
-        !response ? "User email or pasword is incorrect" : navigate(HOME_PATH)
-      );
+      setError(!response ? "User email or pasword is incorrect" : "");
     } catch (error) {
       console.error(error);
     }

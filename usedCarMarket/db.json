@@ -1,5 +1,41 @@
 {
-  "usedCars": [],
+  "usedCars": [{
+    "id": 1,
+    "userId":1694807686139,
+    "brand":"BMW",
+    "color":"White",
+    "make":"330i",
+    "year": "2010-05",
+    "fuelType":"Petrol",
+    "transmision":"automatic",
+    "liters" :3.0,
+    "power": 125,
+    "price": 7250,
+    "city":"Panevezys",
+    "kilometers": 310000,
+    "bodyType": "Sedan",
+    "image": "https://www.motorbeam.com/wp-content/uploads/BMW_330i_Test_Drive_Review-1200x675.jpg",
+    "wheelsDrive":"Rear wheel drive"
+  },
+  {
+    "id": 2,
+    "userId":1694807686139,
+    "brand":"BMW",
+    "color":"White",
+    "make":"330i",
+    "year": "2010-05",
+    "fuelType":"Petrol",
+    "transmision":"automatic",
+    "liters" :3.0,
+    "power": 125,
+    "price": 7250,
+    "city":"Panevezys",
+    "kilometers": 310000,
+    "bodyType": "Sedan",
+    "image": "https://www.motorbeam.com/wp-content/uploads/BMW_330i_Test_Drive_Review-1200x675.jpg",
+    "wheelsDrive":"Rear wheel drive"
+  }
+],
   "users": [
     {
       "id": 1694807686139,

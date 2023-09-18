@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const StyledHeader = styled.header`
-  max-width: 1400px;
+  max-width: 85vw;
   margin: 0.5rem auto;
   display: flex;
   justify-content: space-between;
