@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { StyledForm } from "../components/styled/StyledForm";
-import { StyledInput } from "../components/styled/StyledInput";
-import { HOME_PATH } from "../routes/routeConsts";
+import { StyledButton } from "../components/styled/StyledButton";
+
 import { StyledError, StyledLabelWrapper } from "./Register";
 import { CreateNewCar } from "../API/Cars";
+import { HOME_PATH } from "../routes/routeConsts";
+import { useContext } from "react";
+import { UserContext } from "../contexts/userContext";
 
 const YearSelect = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 338px;
 
   div {
     display: flex;
@@ -20,7 +22,6 @@ const YearSelect = styled.div`
 
   .month {
     margin-left: 1rem;
-    width: 42%;
   }
 `;
 
@@ -29,16 +30,10 @@ const StyledTitle = styled.div`
   text-align: center;
 `;
 
-const StyledSelect = styled(Field)`
-  padding: 0.5rem;
-  width: 180px;
+const ButtonDiv = styled.div`
+  width: 100%;
+  text-align: center;
 `;
-
-// const ButtonDiv = styled.div`
-//   grid-column: 4;
-//   grid-row: 6;
-//   width: 100%;
-// `;
 
 const StyledAddCarForm = styled(StyledForm)`
   display: flex;
@@ -52,11 +47,26 @@ const StyledAddCarForm = styled(StyledForm)`
     grid-column: 2;
     width: 100%;
   }
+
+  input,
+  select {
+    padding: 0.5rem;
+    width: 188px;
+  }
+
+  .imageUrls {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
 `;
 
 const NewCarForm = () => {
   const navigate = useNavigate();
-
+  const { user } = useContext(UserContext);
+  console.log(user);
   const handleAddNewCar = async (values) => {
     try {
       await CreateNewCar(values);
@@ -66,31 +76,34 @@ const NewCarForm = () => {
     }
   };
 
+  const getInitialValues = (userId) => ({
+    brand: "",
+    color: "",
+    make: "",
+    year: 0,
+    fuelType: "",
+    transmision: "",
+    liters: 0,
+    power: 0,
+    price: 0,
+    city: "",
+    kilometers: 0,
+    bodyType: "",
+    image: "",
+    wheelsDrive: "",
+    userId,
+  });
+
   return (
     <div className="loginBackground">
       <Formik
-        initialValues={{
-          brand: "",
-          color: "",
-          make: "",
-          year: 0,
-          fuelType: "",
-          transmision: "",
-          liters: 0,
-          power: 0,
-          price: 0,
-          city: "",
-          kilometers: 0,
-          bodyType: "",
-          image: "",
-          wheelsDrive: "",
-        }}
+        initialValues={getInitialValues(user.id)}
         onSubmit={handleAddNewCar}
         validationSchema={() =>
-          Yup.object().shape({
+          Yup.object({
             brand: Yup.string(),
             color: Yup.string(),
-            make: Yup.string().required("Required"),
+            make: Yup.string(),
             year: Yup.number(),
             month: Yup.number(),
             fuelType: Yup.string(),
@@ -103,6 +116,7 @@ const NewCarForm = () => {
             bodyType: Yup.string(),
             image: Yup.string().url(),
             wheelsDrive: Yup.string(),
+            userId: Yup.number(),
           })
         }
       >
@@ -116,16 +130,33 @@ const NewCarForm = () => {
               <label htmlFor="brand">Brand</label>
               <StyledError name="brand" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="brand">
-              <option value="--Select car brand--">--Select car brand--</option>
-              <option>BMW</option>
-              <option>AUDI</option>
-              <option>VOLVO</option>
-              <option>VW</option>
-              <option>PEUGEOT</option>
-              <option>OPEL</option>
-              <option>TOYOTA</option>
-            </StyledSelect>
+            <Field as="select" name="brand">
+              <option value="">--Select car brand--</option>
+              <option value="BMW">BMW</option>
+              <option value="AUDI">AUDI</option>
+              <option value="VOLVO">VOLVO</option>
+              <option value="VW">VW</option>
+              <option value="PEUGEOT">PEUGEOT</option>
+              <option value="OPEL">OPEL</option>
+              <option value="TOYOTA">TOYOTA</option>
+            </Field>
+          </div>
+
+          <div>
+            <StyledLabelWrapper>
+              <label htmlFor="make">Make</label>
+              <StyledError name="make" component="div" />
+            </StyledLabelWrapper>
+            <Field as="select" name="make">
+              <option value="">--Select car make--</option>
+              <option value="BMW">3 series</option>
+              <option value="AUDI">AUDI</option>
+              <option value="VOLVO">VOLVO</option>
+              <option value="VW">VW</option>
+              <option value="PEUGEOT">PEUGEOT</option>
+              <option value="OPEL">OPEL</option>
+              <option value="TOYOTA">TOYOTA</option>
+            </Field>
           </div>
 
           <div>
@@ -133,7 +164,7 @@ const NewCarForm = () => {
               <label htmlFor="color">Color</label>
               <StyledError name="color" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="color">
+            <Field as="select" name="color">
               <option value="--Select car color--">--Select car color--</option>
               <option>white</option>
               <option>black</option>
@@ -142,22 +173,7 @@ const NewCarForm = () => {
               <option>green</option>
               <option>gray</option>
               <option>pink</option>
-            </StyledSelect>
-          </div>
-
-          <div>
-            <StyledLabelWrapper>
-              <label htmlFor="make">Make</label>
-              <StyledError name="make" component="div" />
-            </StyledLabelWrapper>
-            <StyledInput>
-              <Field
-                label="make"
-                name="make"
-                type="text"
-                placeholder="Type your make"
-              />
-            </StyledInput>
+            </Field>
           </div>
 
           <YearSelect>
@@ -166,136 +182,136 @@ const NewCarForm = () => {
               <StyledError name="year" component="div" />
             </StyledLabelWrapper>
             <div>
-              <StyledSelect as="select" name="year">
-                <option>--</option>
-                <option>2023</option>
-                <option>2022</option>
-                <option>2021</option>
-                <option>2020</option>
-                <option>2019</option>
-                <option>2018</option>
-                <option>2017</option>
-                <option>2016</option>
-                <option>2015</option>
-                <option>2014</option>
-                <option>2013</option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2010</option>
-                <option>2009</option>
-                <option>2008</option>
-                <option>2007</option>
-                <option>2006</option>
-                <option>2005</option>
-                <option>2004</option>
-                <option>2003</option>
-                <option>2002</option>
-                <option>2001</option>
-                <option>2000</option>
-                <option>1999</option>
-                <option>1998</option>
-                <option>1997</option>
-                <option>1996</option>
-                <option>1995</option>
-                <option>1994</option>
-                <option>1993</option>
-                <option>1992</option>
-                <option>1991</option>
-                <option>1990</option>
-                <option>1989</option>
-                <option>1988</option>
-                <option>1987</option>
-                <option>1986</option>
-                <option>1985</option>
-                <option>1984</option>
-                <option>1983</option>
-                <option>1982</option>
-                <option>1981</option>
-                <option>1980</option>
-                <option>1979</option>
-                <option>1978</option>
-                <option>1977</option>
-                <option>1976</option>
-                <option>1975</option>
-                <option>1974</option>
-                <option>1973</option>
-                <option>1972</option>
-                <option>1971</option>
-                <option>1970</option>
-                <option>1969</option>
-                <option>1968</option>
-                <option>1967</option>
-                <option>1966</option>
-                <option>1965</option>
-                <option>1964</option>
-                <option>1963</option>
-                <option>1962</option>
-                <option>1961</option>
-                <option>1960</option>
-                <option>1959</option>
-                <option>1958</option>
-                <option>1957</option>
-                <option>1956</option>
-                <option>1955</option>
-                <option>1954</option>
-                <option>1953</option>
-                <option>1952</option>
-                <option>1951</option>
-                <option>1950</option>
-                <option>1949</option>
-                <option>1948</option>
-                <option>1947</option>
-                <option>1946</option>
-                <option>1945</option>
-                <option>1944</option>
-                <option>1943</option>
-                <option>1942</option>
-                <option>1941</option>
-                <option>1940</option>
-                <option>1939</option>
-                <option>1938</option>
-                <option>1937</option>
-                <option>1936</option>
-                <option>1935</option>
-                <option>1934</option>
-                <option>1933</option>
-                <option>1932</option>
-                <option>1931</option>
-                <option>1930</option>
-                <option>1929</option>
-                <option>1928</option>
-                <option>1927</option>
-                <option>1926</option>
-                <option>1925</option>
-                <option>1924</option>
-                <option>1923</option>
-                <option>1922</option>
-                <option>1921</option>
-                <option>1920</option>
-                <option>1919</option>
-                <option>1918</option>
-                <option>1917</option>
-                <option>1916</option>
-                <option>1915</option>
-                <option>1914</option>
-                <option>1913</option>
-                <option>1912</option>
-                <option>1911</option>
-                <option>1910</option>
-                <option>1909</option>
-                <option>1908</option>
-                <option>1907</option>
-                <option>1906</option>
-                <option>1905</option>
-                <option>1904</option>
-                <option>1903</option>
-                <option>1902</option>
-                <option>1901</option>
-                <option>1900</option>
-              </StyledSelect>
+              <Field as="select" name="year">
+                <option>--Select car year--</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+                <option value="2010">2010</option>
+                <option value="2009">2009</option>
+                <option value="2008">2008</option>
+                <option value="2007">2007</option>
+                <option value="2006">2006</option>
+                <option value="2005">2005</option>
+                <option value="2004">2004</option>
+                <option value="2003">2003</option>
+                <option value="2002">2002</option>
+                <option value="2001">2001</option>
+                <option value="2000">2000</option>
+                <option value="1999">1999</option>
+                <option value="1998">1998</option>
+                <option value="1997">1997</option>
+                <option value="1996">1996</option>
+                <option value="1995">1995</option>
+                <option value="1994">1994</option>
+                <option value="1993">1993</option>
+                <option value="1992">1992</option>
+                <option value="1991">1991</option>
+                <option value="1990">1990</option>
+                <option value="1989">1989</option>
+                <option value="1988">1988</option>
+                <option value="1987">1987</option>
+                <option value="1986">1986</option>
+                <option value="1985">1985</option>
+                <option value="1984">1984</option>
+                <option value="1983">1983</option>
+                <option value="1982">1982</option>
+                <option value="1981">1981</option>
+                <option value="1980">1980</option>
+                <option value="1979">1979</option>
+                <option value="1978">1978</option>
+                <option value="1977">1977</option>
+                <option value="1976">1976</option>
+                <option value="1975">1975</option>
+                <option value="1974">1974</option>
+                <option value="1973">1973</option>
+                <option value="1972">1972</option>
+                <option value="1971">1971</option>
+                <option value="1970">1970</option>
+                <option value="1969">1969</option>
+                <option value="1968">1968</option>
+                <option value="1967">1967</option>
+                <option value="1966">1966</option>
+                <option value="1965">1965</option>
+                <option value="1964">1964</option>
+                <option value="1963">1963</option>
+                <option value="1962">1962</option>
+                <option value="1961">1961</option>
+                <option value="1960">1960</option>
+                <option value="1959">1959</option>
+                <option value="1958">1958</option>
+                <option value="1957">1957</option>
+                <option value="1956">1956</option>
+                <option value="1955">1955</option>
+                <option value="1954">1954</option>
+                <option value="1953">1953</option>
+                <option value="1952">1952</option>
+                <option value="1951">1951</option>
+                <option value="1950">1950</option>
+                <option value="1949">1949</option>
+                <option value="1948">1948</option>
+                <option value="1947">1947</option>
+                <option value="1946">1946</option>
+                <option value="1945">1945</option>
+                <option value="1944">1944</option>
+                <option value="1943">1943</option>
+                <option value="1942">1942</option>
+                <option value="1941">1941</option>
+                <option value="1940">1940</option>
+                <option value="1939">1939</option>
+                <option value="1938">1938</option>
+                <option value="1937">1937</option>
+                <option value="1936">1936</option>
+                <option value="1935">1935</option>
+                <option value="1934">1934</option>
+                <option value="1933">1933</option>
+                <option value="1932">1932</option>
+                <option value="1931">1931</option>
+                <option value="1930">1930</option>
+                <option value="1929">1929</option>
+                <option value="1928">1928</option>
+                <option value="1927">1927</option>
+                <option value="1926">1926</option>
+                <option value="1925">1925</option>
+                <option value="1924">1924</option>
+                <option value="1923">1923</option>
+                <option value="1922">1922</option>
+                <option value="1921">1921</option>
+                <option value="1920">1920</option>
+                <option value="1919">1919</option>
+                <option value="1918">1918</option>
+                <option value="1917">1917</option>
+                <option value="1916">1916</option>
+                <option value="1915">1915</option>
+                <option value="1914">1914</option>
+                <option value="1913">1913</option>
+                <option value="1912">1912</option>
+                <option value="1911">1911</option>
+                <option value="1910">1910</option>
+                <option value="1909">1909</option>
+                <option value="1908">1908</option>
+                <option value="1907">1907</option>
+                <option value="1906">1906</option>
+                <option value="1905">1905</option>
+                <option value="1904">1904</option>
+                <option value="1903">1903</option>
+                <option value="1902">1902</option>
+                <option value="1901">1901</option>
+                <option value="1900">1900</option>
+              </Field>
 
-              <StyledSelect className="month" as="select" name="month">
-                <option>--</option>
+              <Field className="month" as="select" name="month">
+                <option>--Select car month--</option>
                 <option>01</option>
                 <option>02</option>
                 <option>03</option>
@@ -308,7 +324,7 @@ const NewCarForm = () => {
                 <option>10</option>
                 <option>11</option>
                 <option>12</option>
-              </StyledSelect>
+              </Field>
             </div>
           </YearSelect>
 
@@ -317,10 +333,11 @@ const NewCarForm = () => {
               <label htmlFor="fuelType">Fuel type</label>
               <StyledError name="fuelType" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="fuelType">
+            <Field as="select" name="fuelType">
+              <option>--Select Fuel Type--</option>
               <option>Diesel</option>
               <option>Petrol</option>
-            </StyledSelect>
+            </Field>
           </div>
 
           <div>
@@ -328,10 +345,11 @@ const NewCarForm = () => {
               <label htmlFor="transmision">Transmision</label>
               <StyledError name="transmision" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="transmision">
+            <Field as="select" name="transmision">
+              <option>--</option>
               <option>Automatic</option>
               <option>Manual</option>
-            </StyledSelect>
+            </Field>
           </div>
 
           <div>
@@ -339,7 +357,7 @@ const NewCarForm = () => {
               <label htmlFor="liters">Liters</label>
               <StyledError name="liters" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="liters">
+            <Field as="select" name="liters">
               <option>--</option>
               <option>1.2</option>
               <option>1.4</option>
@@ -353,7 +371,7 @@ const NewCarForm = () => {
               <option>2.7</option>
               <option>2.8</option>
               <option>3.0</option>
-            </StyledSelect>
+            </Field>
           </div>
 
           <div>
@@ -361,7 +379,7 @@ const NewCarForm = () => {
               <label htmlFor="power">Power KW</label>
               <StyledError name="power" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect name="power" />
+            <Field name="power" />
           </div>
 
           <div>
@@ -369,7 +387,7 @@ const NewCarForm = () => {
               <label htmlFor="price">Price ($)</label>
               <StyledError name="price" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect name="price" />
+            <Field name="price" />
           </div>
 
           <div>
@@ -377,7 +395,7 @@ const NewCarForm = () => {
               <label htmlFor="city">City</label>
               <StyledError name="city" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="city">
+            <Field as="select" name="city">
               <option>--</option>
               <option>Panevezys</option>
               <option>Kaunas</option>
@@ -391,7 +409,7 @@ const NewCarForm = () => {
               <option>Pasvalys</option>
               <option>Birzai</option>
               <option>Sventoji</option>
-            </StyledSelect>
+            </Field>
           </div>
 
           <div>
@@ -399,7 +417,7 @@ const NewCarForm = () => {
               <label htmlFor="kilometers">Kilometers</label>
               <StyledError name="kilometers" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect name="kilometers" />
+            <Field name="kilometers" />
           </div>
 
           <div>
@@ -407,38 +425,64 @@ const NewCarForm = () => {
               <label htmlFor="bodyType">Body Type</label>
               <StyledError name="bodyType" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="bodyType">
+            <Field as="select" name="bodyType">
               <option>--</option>
               <option>Sedan</option>
               <option>Hatchback</option>
               <option>Coupe</option>
               <option>Estate</option>
               <option>Suv</option>
-            </StyledSelect>
+            </Field>
           </div>
 
           <div>
             <StyledLabelWrapper>
-              <label htmlFor="image">Image Url</label>
-              <StyledError name="image" component="div" />
+              <label htmlFor="condision">Condision</label>
+              <StyledError name="condision" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect name="image" />
+            <Field as="select" name="condision">
+              <option>--</option>
+              <option>New</option>
+              <option>Used</option>
+            </Field>
           </div>
 
           <div>
             <StyledLabelWrapper>
-              <label htmlFor="make">Wheels driven</label>
-              <StyledError name="make" component="div" />
+              <label htmlFor="wheelsDrive">Wheels driven</label>
+              <StyledError name="wheelsDrive" component="div" />
             </StyledLabelWrapper>
-            <StyledSelect as="select" name="bodyType">
+            <Field as="select" name="wheelsDrive">
               <option>--</option>
               <option>All wheel drive</option>
               <option>Rear wheel drive</option>
               <option>Front wheel drive</option>
-            </StyledSelect>
+            </Field>
           </div>
 
-          <button type="submit">Add car</button>
+          <div className="imageUrls">
+            <StyledLabelWrapper>
+              <label htmlFor="image">Image Url 1</label>
+              <StyledError name="image" component="div" />
+            </StyledLabelWrapper>
+            <Field name="image" />
+
+            <StyledLabelWrapper>
+              <label htmlFor="image2">Image Url 2</label>
+              <StyledError name="image2" component="div" />
+            </StyledLabelWrapper>
+            <Field name="image2" />
+
+            <StyledLabelWrapper>
+              <label htmlFor="image3">Image Url 3</label>
+              <StyledError name="image3" component="div" />
+            </StyledLabelWrapper>
+            <Field name="image3" />
+          </div>
+
+          <ButtonDiv>
+            <StyledButton type="submit">Add car</StyledButton>
+          </ButtonDiv>
         </StyledAddCarForm>
       </Formik>
     </div>

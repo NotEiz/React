@@ -41,11 +41,6 @@ export const StyledCarCard = styled.div`
     display: flex;
     flex-direction: column;
   }
-  img {
-    width: 240px;
-    height: 180px;
-    object-fit: cover;
-  }
 
   .moreInfo {
     padding: 1rem;
